@@ -11,11 +11,19 @@ function RegistrationForm() {
 
 
   const handleContinue = () => {
-    // console.log('First Name:', firstName);
-   
-    // console.log('Email:', email);
-    
-    setShowEmailConfirmation(true);
+     if (firstName.trim() === '' || email.trim() === '') {
+      alert('Both fields are required');
+    } else if (!isValidEmail(email)) {
+      alert('Please enter a valid email address');
+    } else {
+      setShowEmailConfirmation(true);
+    }
+  };
+
+  const isValidEmail = (email) => {
+    // A simple email validation pattern
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
   };
 
   return (
